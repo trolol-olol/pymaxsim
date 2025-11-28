@@ -1,5 +1,6 @@
 import time
 import random
+import sys
 
 def intinput(msg,values):
     while True:
@@ -12,11 +13,13 @@ def intinput(msg,values):
         return a
 
 def progress(msg):
-    for i in range(1000):
-        if i%10==0:
-            print(f'{msg}: {i//10}%')
-            time.sleep(0.1)
-    print(f"{msg}: завершено")
+    for i in range(101):
+        completed=i//5
+        bar='['+'#'*completed+'.'*(20-completed)+']'
+        sys.stdout.write(f'\r{msg}: {bar} {i}%')
+        sys.stdout.flush()
+        time.sleep(0.1)
+    print('')
 
 time.sleep(1)
 print('Хм-м-м надо бы MAX скачать, все в моей школе на нём общаются, я же не тот, кто отстаёт от всех!')
@@ -25,8 +28,8 @@ print('-'*80)
 time.sleep(5)
 print('Мессенджер MAX')
 print('Средняя оценка...')
-print('Скачать MAX_3.1.txt.vbs')
-first_action =intinput('Что вы выберете? Читать отзывы - пишите "1", скачать MAX 3.1 - пишите "2": ',[1,2])
+print('Скачать MAX_3.1.1.txt.vbs')
+first_action =intinput('Что вы выберете? Читать отзывы - пишите "1", скачать MAX 3.1.1 - пишите "2": ',[1,2])
 if first_action == 1:
     print('Средняя оценка: 1.6/5.0')
     time.sleep(1)
@@ -64,7 +67,7 @@ elif first_action == 2:
                 break
     print('-'*80)
     print(f'Код из SMS отправлен на email {email}, впишите его в поле для подтверждения, что это вы')
-    r=str(random.randint(0,100000)).zfill(6)
+    r=str(random.randint(0,999999)).zfill(6)
     time.sleep(3)
     print(f'Ваш код - {r}, не говорите его никому!')
     code = input('Впишите код из SMS: ')
